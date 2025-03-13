@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --medium-green: #1a8917;
+  --medium-green-hover: #156b12;
+  --medium-border: #f2f2f2;
+  --medium-gray: #6b6b6b;
+  --medium-light-gray: #f9f9f9;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans, 'Charter', 'Georgia', serif);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+  line-height: 1.2;
+}
+
+.prose {
+  font-family: 'Charter', 'Georgia', serif;
+  max-width: 700px;
+  line-height: 1.8;
+  font-size: 1.125rem;
+}
+
+.prose p {
+  margin-bottom: 1.5rem;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
