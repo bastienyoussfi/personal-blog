@@ -7,17 +7,17 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-gray-200 py-2.5 bg-white sticky top-0 z-10">
+    <header className="border-b border-[var(--medium-border)] py-4 bg-[var(--background)] sticky top-0 z-10">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex justify-between items-center h-10">
           <div className="flex items-center">
-            <Link href="/" className="font-serif text-2xl font-bold text-gray-900 mr-6">
-              Medium
+            <Link href="/" className="font-serif text-2xl font-medium text-[var(--foreground)] mr-6">
+              Your Blog Name
             </Link>
             
             <div className="hidden md:flex relative">
-              <div className="flex items-center bg-gray-50 rounded-full px-3 py-1 text-sm">
-                <svg className="h-4 w-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <div className="flex items-center bg-[var(--secondary-light)] rounded-full px-3 py-1 text-sm">
+                <svg className="h-4 w-4 text-[var(--medium-gray)] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <input 
@@ -29,54 +29,78 @@ const Header = () => {
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-3">
+          <div className="hidden md:flex items-center space-x-6">
+            <Link href="/about" className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors">
+              About
+            </Link>
+            <Link href="/blog" className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors">
+              Blog
+            </Link>
             <Link 
               href="/write" 
-              className="flex items-center text-sm text-gray-600 hover:text-gray-900"
+              className="bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--foreground)] px-4 py-2 rounded-full text-sm font-medium transition-colors"
             >
-              <svg className="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-              </svg>
               Write
             </Link>
-            <Link 
-              href="/sign-up" 
-              className="px-3 py-1.5 rounded-full bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition-colors"
-            >
-              Sign up
-            </Link>
-            <Link 
-              href="/sign-in" 
-              className="text-sm text-gray-600 hover:text-gray-900"
-            >
-              Sign in
-            </Link>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button 
-              type="button" 
-              className="text-gray-600 hover:text-gray-900 focus:outline-none"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-6 w-6">
-                {isMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                )}
+          <button 
+            className="md:hidden p-1.5 text-[var(--foreground)]"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? (
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path 
+                  stroke="currentColor" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="1.5" 
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
-            </button>
-          </div>
+            ) : (
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path 
+                  stroke="currentColor" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth="1.5" 
+                  d="M4.75 5.75h14.5M4.75 12h14.5M4.75 18.25h14.5"
+                />
+              </svg>
+            )}
+          </button>
         </div>
+      </div>
 
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 bg-white">
-            <div className="relative mb-4">
-              <div className="flex items-center bg-gray-50 rounded-full px-3 py-1">
-                <svg className="h-4 w-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[var(--background)] border-b border-[var(--medium-border)] py-4 px-6 z-20">
+          <div className="flex flex-col space-y-4">
+            <Link 
+              href="/about" 
+              className="text-[var(--foreground)] hover:text-[var(--accent)]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link 
+              href="/blog" 
+              className="text-[var(--foreground)] hover:text-[var(--accent)]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Blog
+            </Link>
+            <Link 
+              href="/write" 
+              className="inline-block bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--foreground)] px-4 py-2 rounded-full text-sm font-medium"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Write
+            </Link>
+            <div className="pt-2">
+              <div className="flex items-center bg-[var(--secondary-light)] rounded-full px-3 py-1.5 text-sm">
+                <svg className="h-4 w-4 text-[var(--medium-gray)] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <input 
@@ -86,35 +110,9 @@ const Header = () => {
                 />
               </div>
             </div>
-            <nav className="flex flex-col space-y-4">
-              <Link 
-                href="/write" 
-                className="flex items-center text-gray-600 hover:text-gray-900"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <svg className="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                </svg>
-                Write
-              </Link>
-              <Link 
-                href="/sign-up" 
-                className="px-3 py-1.5 rounded-full bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition-colors inline-block w-fit"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sign up
-              </Link>
-              <Link 
-                href="/sign-in" 
-                className="text-gray-600 hover:text-gray-900"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sign in
-              </Link>
-            </nav>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 };

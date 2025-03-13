@@ -1,23 +1,28 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lora } from "next/font/google";
+import { Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant-garamond",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Medium – Where good ideas find you.",
-  description: "Read and share ideas from independent voices, world-class publications, and experts from around the globe.",
-  themeColor: "#ffffff",
+  title: "My Personal Blog",
+  description: "A beautiful space to share thoughts, ideas, and stories.",
+  themeColor: "#faf7f2",
 };
 
 export default function RootLayout({
@@ -28,13 +33,10 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Charter:wght@400;700&display=swap"
-        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-white text-gray-900`}
+        className={`${cormorantGaramond.variable} ${lora.variable} antialiased min-h-screen flex flex-col`}
       >
         <Header />
         <main className="flex-grow">{children}</main>
