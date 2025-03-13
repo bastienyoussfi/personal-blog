@@ -7,29 +7,29 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-gray-200 py-3 bg-white sticky top-0 z-10">
+    <header className="border-b border-gray-200 py-2.5 bg-white sticky top-0 z-10">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center h-10">
           <div className="flex items-center">
-            <Link href="/" className="font-serif text-2xl font-bold text-gray-900 mr-4">
+            <Link href="/" className="font-serif text-2xl font-bold text-gray-900 mr-6">
               Medium
             </Link>
             
-            <div className="hidden md:flex relative ml-4">
-              <div className="flex items-center bg-gray-50 rounded-full px-3 py-1">
+            <div className="hidden md:flex relative">
+              <div className="flex items-center bg-gray-50 rounded-full px-3 py-1 text-sm">
                 <svg className="h-4 w-4 text-gray-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
                 <input 
                   type="text" 
                   placeholder="Search" 
-                  className="bg-transparent focus:outline-none text-sm w-32 lg:w-40"
+                  className="bg-transparent focus:outline-none text-sm w-28 lg:w-36"
                 />
               </div>
             </div>
           </div>
 
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-3">
             <Link 
               href="/write" 
               className="flex items-center text-sm text-gray-600 hover:text-gray-900"
