@@ -7,12 +7,12 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="border-b border-[var(--medium-border)] py-4 bg-[var(--background)] sticky top-0 z-10">
+    <header className="border-b border-[var(--medium-border)] py-4 bg-white sticky top-0 z-10">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex justify-between items-center h-10">
           <div className="flex items-center">
-            <Link href="/" className="font-serif text-2xl font-medium text-[var(--foreground)] mr-6">
-              Your Blog Name
+            <Link href="/" className="font-serif text-4xl font-medium text-[var(--foreground)] mr-6">
+              Ink
             </Link>
             
             <div className="hidden md:flex relative">
@@ -32,9 +32,6 @@ const Header = () => {
           <div className="hidden md:flex items-center space-x-6">
             <Link href="/about" className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors">
               About
-            </Link>
-            <Link href="/blog" className="text-[var(--foreground)] hover:text-[var(--accent)] transition-colors">
-              Blog
             </Link>
             <Link 
               href="/write" 
