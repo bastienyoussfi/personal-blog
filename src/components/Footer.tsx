@@ -4,18 +4,9 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-[var(--medium-border)] py-10 mt-6 bg-[var(--background)]">
+    <footer className="border-t border-[var(--medium-border)] py-10 bg-[var(--background)]">
       <div className="max-w-4xl mx-auto px-6">
-        <div className="flex flex-wrap justify-between">
-          <div className="w-full mb-8">
-            <Link href="/" className="font-serif text-xl font-medium text-[var(--foreground)]">
-              Your Blog Name
-            </Link>
-            <p className="mt-3 text-[var(--medium-gray)] text-sm max-w-md">
-              A thoughtful space for ideas, stories, and reflections on life, art, and everything in between.
-            </p>
-          </div>
-          
+        <div className="flex flex-wrap justify-between">          
           <div className="w-full md:w-1/2">
             <h3 className="text-sm font-medium mb-4 text-[var(--foreground)]">Navigation</h3>
             <ul className="flex flex-wrap gap-y-3 gap-x-6 text-sm">
