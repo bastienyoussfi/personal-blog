@@ -25,16 +25,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-[var(--medium-gray)] hover:text-[var(--accent)] transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/write" className="text-[var(--medium-gray)] hover:text-[var(--accent)] transition-colors">
-                  Write
-                </Link>
-              </li>
-              <li>
                 <Link href="/privacy" className="text-[var(--medium-gray)] hover:text-[var(--accent)] transition-colors">
                   Privacy
                 </Link>

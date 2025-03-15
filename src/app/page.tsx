@@ -12,7 +12,7 @@ const featuredPost = {
     name: 'Melissa DePuydt',
     image: '/images/author-1.jpg'
   },
-  coverImage: '/images/post-1.jpg'
+  coverImage: '/images/1.jpeg'
 };
 
 const recentPosts = [
@@ -26,7 +26,7 @@ const recentPosts = [
       name: 'Jane Smith',
       image: '/images/author-2.jpg'
     },
-    coverImage: '/images/post-2.jpg'
+    coverImage: '/images/2.jpeg'
   },
   {
     id: 'tailwind-css-techniques',
@@ -38,7 +38,7 @@ const recentPosts = [
       name: 'Alex Johnson',
       image: '/images/author-3.jpg'
     },
-    coverImage: '/images/post-3.jpg'
+    coverImage: '/images/3.jpeg'
   },
   {
     id: 'react-performance-optimization',
@@ -50,7 +50,7 @@ const recentPosts = [
       name: 'Michael Brown',
       image: '/images/author-4.jpg'
     },
-    coverImage: '/images/post-4.jpg'
+    coverImage: '/images/4.jpeg'
   }
 ];
 
@@ -60,7 +60,7 @@ export default function Home() {
       <div className="max-w-5xl mx-auto px-6">
         {/* Latest Stories Heading */}
         <div className="pt-8 pb-4 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">Latest stories</h2>
+          <h2 className="text-xl font-semibold text-gray-900">Latest articles</h2>
         </div>
 
         {/* Featured Post - Medium Style */}
@@ -68,6 +68,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row gap-8">
             <div className="md:w-1/2">
               <div className="relative aspect-[16/9] w-full rounded-sm overflow-hidden mb-4">
+                <Link href={`/blog/${featuredPost.id}`}>
                 <Image
                   src={featuredPost.coverImage}
                   alt={featuredPost.title}
@@ -75,6 +76,7 @@ export default function Home() {
                   style={{ objectFit: 'cover' }}
                   priority
                 />
+                </Link>
               </div>
             </div>
             
