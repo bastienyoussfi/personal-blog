@@ -136,9 +136,11 @@ export default async function Home() {
 
         {/* More Articles */}
         <section className="py-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">More from the blog</h2>
+        <div className="pt-8 pb-4 border-b border-gray-200">
+          <h2 className="text-xl font-semibold text-gray-900">More from the blog</h2>
+        </div>
           
-          <div className="space-y-8">
+          <div className="space-y-8 pt-8">
             {posts.slice(0, 5).map(post => (
               <div key={post.id} className="flex flex-col md:flex-row gap-6 pb-8 border-b border-gray-100">
                 <div className="md:w-1/4">
@@ -226,7 +228,8 @@ export default async function Home() {
                   </div>
                   
                   <Link 
-                    href={creatorInfo.portfolioUrl}
+                    href={"https://bastienyoussfi.com"}
+                    target="_blank"
                     className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-medium py-2 px-6 rounded-md transition-colors duration-200"
                   >
                     View My Portfolio
