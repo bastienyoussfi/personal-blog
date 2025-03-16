@@ -192,7 +192,7 @@ export default async function Home() {
           <div className="pt-8 pb-4 border-b border-gray-200">
             <h2 className="text-xl font-semibold text-gray-900">About the author</h2>
           </div>
-          <div className="bg-gray-50 rounded-lg overflow-hidden">
+          <div className="bg-gray-50 my-8 rounded-lg overflow-hidden">
             <div className="flex flex-col md:flex-row">
               <div className="md:w-2/5 relative">
                 <div className="relative aspect-[3/4] h-full">
@@ -231,7 +231,7 @@ export default async function Home() {
                   <Link 
                     href={"https://bastienyoussfi.com"}
                     target="_blank"
-                    className="inline-block bg-gray-900 hover:bg-gray-800 text-white font-medium py-2 px-6 rounded-md transition-colors duration-200"
+                    className="inline-block bg-gray-300 hover:bg-gray-250 text-white font-medium py-2 px-6 rounded-md transition-colors duration-200"
                   >
                     View My Portfolio
                   </Link>
