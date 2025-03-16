@@ -2,19 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { getFeaturedArticle, getRecentArticles, getAllArticles } from '@/lib/firebase';
 
-// Creator information
-const creatorInfo = {
-  name: 'Bastien Yousfi',
-  title: 'Full Stack Engineer & Tech Writer',
-  bio: 'I create modern web experiences using React, TypeScript, and Next.js. Sharing my journey, insights, and lessons learned in software engineering.',
-  image: '/images/profile.jpeg',
-  portfolioUrl: '/portfolio',
-  socialLinks: [
-    { name: 'GitHub', url: 'https://github.com/yourusername' },
-    { name: 'Twitter', url: 'https://twitter.com/yourusername' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/yourusername' },
-  ]
-};
 
 export default async function Home() {
   // Fetch data from Firebase
@@ -197,8 +184,8 @@ export default async function Home() {
               <div className="md:w-2/5 relative">
                 <div className="relative aspect-[3/4] h-full">
                   <Image 
-                    src={creatorInfo.image}
-                    alt={creatorInfo.name}
+                    src={'/images/profile.jpeg'}
+                    alt={'Bastien Youssfi'}
                     fill
                     style={{ objectFit: 'cover' }}
                     priority
@@ -208,26 +195,12 @@ export default async function Home() {
               
               <div className="md:w-3/5 p-6 md:p-8 flex flex-col justify-between">
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{creatorInfo.name}</h3>
-                  <p className="text-gray-600 font-medium mb-4">{creatorInfo.title}</p>
-                  <p className="text-gray-600 mb-6">{creatorInfo.bio}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Bastien Youssfi</h3>
+                  <p className="text-gray-600 font-medium mb-4">Full Stack Engineer & Tech Writer</p>
+                  <p className="text-gray-600 mb-6">I create modern web experiences using React, TypeScript, and Next.js. Sharing my journey, insights, and lessons learned in software engineering. You can reach me on <a href="https://x.com/bastienyoussfi" target="_blank" rel="noopener noreferrer" className="text-xl">X (Twitter)</a> or <a href="https://www.linkedin.com/in/bastienyoussfi/" target="_blank" rel="noopener noreferrer" className="text-xl">LinkedIn</a>.</p>
                 </div>
                 
-                <div>
-                  <div className="flex space-x-4 mb-4">
-                    {creatorInfo.socialLinks.map((link, index) => (
-                      <a 
-                        key={index} 
-                        href={link.url} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="text-gray-600 hover:text-gray-900 transition-colors"
-                      >
-                        {link.name}
-                      </a>
-                    ))}
-                  </div>
-                  
+                <div>                  
                   <Link 
                     href={"https://bastienyoussfi.com"}
                     target="_blank"
