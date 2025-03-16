@@ -22,7 +22,6 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: "My Personal Blog",
   description: "A beautiful space to share thoughts, ideas, and stories.",
-  themeColor: "#faf7f2",
 };
 
 export default function RootLayout({

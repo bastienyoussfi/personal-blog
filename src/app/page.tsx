@@ -142,7 +142,7 @@ export default async function Home() {
           
           <div className="space-y-8 pt-8">
             {posts.slice(0, 5).map(post => (
-              <div key={post.id} className="flex flex-col md:flex-row gap-6 pb-8 border-b border-gray-100">
+              <div key={post.id} className="flex flex-col md:flex-row gap-6 pb-8 border-b last:border-none border-gray-100">
                 <div className="md:w-1/4">
                   <Link href={`/blog/${post.id}`}>
                     <div className="relative aspect-[4/3] w-full rounded-sm overflow-hidden">
@@ -189,8 +189,9 @@ export default async function Home() {
         
         {/* About the Creator */}
         <section className="py-8">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">About the author</h2>
-          
+          <div className="pt-8 pb-4 border-b border-gray-200">
+            <h2 className="text-xl font-semibold text-gray-900">About the author</h2>
+          </div>
           <div className="bg-gray-50 rounded-lg overflow-hidden">
             <div className="flex flex-col md:flex-row">
               <div className="md:w-2/5 relative">
