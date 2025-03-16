@@ -98,7 +98,7 @@ const creatorInfo = {
   name: 'Bastien Yousfi',
   title: 'Full Stack Engineer & Tech Writer',
   bio: 'I create modern web experiences using React, TypeScript, and Next.js. Sharing my journey, insights, and lessons learned in software engineering.',
-  image: '/images/creator.jpg',
+  image: '/images/profile.jpeg',
   portfolioUrl: '/portfolio',
   socialLinks: [
     { name: 'GitHub', url: 'https://github.com/yourusername' },

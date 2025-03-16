@@ -11,11 +11,6 @@ const Footer = () => {
             <h3 className="text-sm font-medium mb-4 text-[var(--foreground)]">Navigation</h3>
             <ul className="flex flex-wrap gap-y-3 gap-x-6 text-sm">
               <li>
-                <Link href="/about" className="text-[var(--medium-gray)] hover:text-[var(--accent)] transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
                 <Link href="/privacy" className="text-[var(--medium-gray)] hover:text-[var(--accent)] transition-colors">
                   Privacy
                 </Link>
