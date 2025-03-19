@@ -2,12 +2,14 @@
   "name": "personal-blog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node scripts/seed-firebase.js"
+    "seed": "node scripts/seed-firebase.js",
+    "deploy-static": "node scripts/deploy-static.js"
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",

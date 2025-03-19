@@ -1,13 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getArticleById, getRelatedArticles } from "@/lib/firebase";
+import { getArticleById, getRelatedArticles, getAllArticles } from "@/lib/firebase";
 
 type BlogPostParams = {
   params: {
     id: string;
   };
 };
+
+// Generate static params for all blog posts at build time
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  
+  return articles.map(article => ({
+    id: article.id,
+  }));
+}
 
 // This function gets called at build time and on every request
 export async function generateMetadata({ params }: BlogPostParams) {
@@ -20,14 +29,38 @@ export async function generateMetadata({ params }: BlogPostParams) {
     };
   }
 
+  // Enhanced metadata for better SEO
   return {
     title: post.title,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: [{ url: post.coverImage }]
+      images: [{ 
+        url: post.coverImage,
+        width: 1200,
+        height: 630,
+        alt: post.title 
+      }],
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author.name],
+      tags: post.tags || [],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt,
+      images: [post.coverImage],
+    },
+    alternates: {
+      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${params.id}/`,
+    },
+    // Add structured data for article
+    other: {
+      'article:published_time': post.date,
+      'article:author': post.author.name,
+    }
   };
 }
 
@@ -91,14 +124,48 @@ export default async function BlogPost({ params }: BlogPostParams) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://yourblog.com";
   const fullUrl = `${baseUrl}/blog/${params.id}`;
 
+  // Generate JSON-LD structured data for this article
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt,
+    image: post.coverImage,
+    datePublished: post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author.name,
+      image: post.author.image,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Your Blog Name', // Replace with your blog name
+      logo: {
+        '@type': 'ImageObject',
+        url: `${baseUrl}/logo.png`, // Add your logo image
+      }
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': fullUrl,
+    },
+  };
+
   return (
     <div className="bg-white">
+      {/* Add JSON-LD structured data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      
       <div className="max-w-3xl mx-auto px-6 py-8">
         {/* Back button */}
         <div className="mb-8">
           <Link 
             href="/" 
             className="text-gray-600 hover:text-gray-900 flex items-center"
+            aria-label="Back to homepage"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -137,6 +204,7 @@ export default async function BlogPost({ params }: BlogPostParams) {
             alt={post.title}
             fill
             priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
             style={{ objectFit: 'cover' }}
           />
         </div>
