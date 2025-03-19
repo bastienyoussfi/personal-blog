@@ -1,6 +1,10 @@
 'use client';
 
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeHighlight from 'rehype-highlight';
 
 interface ArticleRendererProps {
   content: string;
@@ -8,15 +12,37 @@ interface ArticleRendererProps {
 }
 
 /**
- * ArticleRenderer - A component for rendering HTML article content with proper styling
+ * Attempts to detect if the content is Markdown
+ * Simple heuristic to check if the content has Markdown formatting
+ */
+function isMarkdown(content: string): boolean {
+  // Check for common markdown patterns
+  const markdownPatterns = [
+    /^#+ .+$/m, // headers
+    /^- .+$/m,  // unordered lists
+    /^[0-9]+\. .+$/m, // ordered lists
+    /\[.+?\]\(.+?\)/m, // links
+    /^```[\s\S]+```$/m, // code blocks
+    /^\|.+\|$/m, // tables
+    /^\*\*.+\*\*$/m, // bold
+    /^\*.+\*$/m, // italic
+  ];
+  
+  return markdownPatterns.some(pattern => pattern.test(content));
+}
+
+/**
+ * ArticleRenderer - A component for rendering Markdown or HTML article content with proper styling
  * 
  * This component provides consistent, well-spaced styling for article content
- * while safely rendering HTML content from trusted sources (like Firebase).
+ * while safely rendering content from trusted sources (like Firebase).
  */
 const ArticleRenderer: React.FC<ArticleRendererProps> = ({ 
   content, 
   className = ''
 }) => {
+  const contentIsMd = isMarkdown(content || '');
+
   return (
     <>
       <style jsx global>{`
@@ -167,10 +193,18 @@ const ArticleRenderer: React.FC<ArticleRendererProps> = ({
         }
       `}</style>
       <div className="article-container" style={{ maxWidth: "100%", padding: "0 1rem" }}>
-        <article 
-          className={`article-content ${className}`}
-          dangerouslySetInnerHTML={{ __html: content || '' }} 
-        />
+        <article className={`article-content ${className}`}>
+          {contentIsMd ? (
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              rehypePlugins={[rehypeRaw, rehypeHighlight]}
+            >
+              {content || ''}
+            </ReactMarkdown>
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: content || '' }} />
+          )}
+        </article>
       </div>
     </>
   );
